@@ -2,11 +2,11 @@ import React from 'react'
 import './projects.css'
 import { Link } from 'react-router-dom';
 
-function Projects(){
+function Contact(){
     return(
-        <h1>My Projects</h1>
+        <h1>My Contact</h1>
     );
 }
 
 
-export default Projects
+export default Contact
