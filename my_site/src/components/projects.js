@@ -2,15 +2,38 @@ import React from 'react'
 import './projects.css'
 import { Link } from 'react-router-dom';
 
+let languageColors = require('../src_assets/languageColors.json');
+
 const KEY = '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'
 
 function Projects(){
+    function projButtons(url, title){
+        fetch(`https://api.github.com/repos/Chillhopper/header_project`)
+        .then((response) => response.json())
+        .then((data) => {
+          // The data object contains information about the repository
+          console.log(data);
+          console.log(data.description);
+          console.log(data.language);
+          const color_code = languageColors[data.language];
+          console.log(color_code);
+        })
+        .catch((error) => {
+          console.error("sorry, Error:", error);
+        });
+        return(
+            <Link to = {url} target="_blank">
+                <button className='proj'>{title}</button>
+            </Link>
+        );
+       
+    }
     return(
         <>
         <h1>My Projects</h1>
         <div class="projhead">
-            <button class="proj">tilt1</button>
-            <button class="proj">tilt1</button>
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
             <button class="proj">tilt1</button>
             <button class="proj">tilt1</button>
             <button class="proj">tilt1</button>
