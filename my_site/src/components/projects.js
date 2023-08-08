@@ -22,8 +22,14 @@ function Projects(){
           console.error("sorry, Error:", error);
         });
         return(
-            <Link to = {url} target="_blank">
-                <button className='proj'>{title}</button>
+            <Link style={{textDecoration: 'none'}} to={url} target="_blank">
+                <div className='proj'>
+                   <span class="title">{title}</span><br/>
+                   <span class="aboutproj">about proj</span><br />
+                   <span class="details">details: </span>
+                   
+                   
+                </div>
             </Link>
         );
        
@@ -34,10 +40,10 @@ function Projects(){
         <div class="projhead">
             {projButtons("https://github.com/Chillhopper", "gitproj")}
             {projButtons("https://github.com/Chillhopper", "gitproj")}
-            <button class="proj">tilt1</button>
-            <button class="proj">tilt1</button>
-            <button class="proj">tilt1</button>
-            <button class="proj">tilt1</button>
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
+            {projButtons("https://github.com/Chillhopper", "gitproj")}
         </div>
         </>
 
