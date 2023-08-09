@@ -1,3 +1,4 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .projhead{
     display: grid;
@@ -5,7 +6,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
-    width: 70%;
+    width: 80vw;
     background-color: none;
     height: 80vh;
     overflow: auto;
@@ -13,32 +14,36 @@
     border: 1px solid black;
     margin: auto;
     gap: 0.5rem;
+    padding: 1rem;
 }
 
 .proj{
-    width: 236px;
-    height: 120px;
-    margin: 10px;
     cursor: pointer;
     background-color: #4CAF50;
     color: #ffffff;
     border:transparent;
     border-radius: 4px;
     box-shadow: 0px 0px 11px 3px rgb(41, 44, 40);
-    white-space: nowrap;
+    min-height: 20vh;
+    min-width: 10vw;
+
+}
+
+.link{
+    text-decoration: none;
 }
 
 .title{
-    text-align: center;
+
     font-size: 24px;
     font-weight: bold;
 }
 
 .aboutproj{
-    text-align: center;
+
 }
 
 .details{
-    text-align: center;
+
 }
 
