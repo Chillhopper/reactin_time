@@ -2,7 +2,8 @@
 
 .card {
     border: 1px solid black;
-    border-radius: 10px
+    border-radius: 10px;
+    background-color: darkcyan;
 }
 
 .c-details span {
@@ -21,9 +22,6 @@
     font-size: 39px
 }
 
-.card-theme {
-    background-color: darkturquoise; /* Set the background color to black */
-}
 
 .text-theme{
     color:#eee;

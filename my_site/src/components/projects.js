@@ -5,7 +5,7 @@ import './card.js'
 import Kard from './card.js';
 
 
-let languageColors = require('../src_assets/languageColors.json');
+const languageColorsJSON = require('../src_assets/languageColors.json');
 
 const KEY = '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'
 
@@ -38,7 +38,6 @@ function Projects(){
     function projButtons(url){
         const { username, repoName } = extractUsernameAndRepo(url);
         let request = `https://api.github.com/repos/${username}/${repoName}`;
-        console.log(request);
         const [info, infoState] = useState(
             {   
                 name:"loading",
@@ -46,7 +45,8 @@ function Projects(){
                 title:"loading",
                 about:"loading",
                 language: "loading",
-                avatar: "https://www.gravatar.com/avatar/?d=404&f=y"
+                avatar: "https://www.gravatar.com/avatar/?d=404&f=y",
+                languageColor: "grey"
             }
         )
         useEffect(()=>{
@@ -54,14 +54,14 @@ function Projects(){
                 try {
                     const response = await fetch(request);
                     let data = await response.json();
-                    console.log(data);
                     infoState({
                         name: data.owner.login,
                         days: data.updated_at,
                         title: data.name,
                         about: data.about,
                         language: data.language,
-                        avatar: data.owner.avatar_url
+                        avatar: data.owner.avatar_url,
+                        languageColor: languageColorsJSON[data.language]
                       });
                 } catch (error) {
                     console.error("Sorry, an error occurred:", error);
@@ -77,7 +77,7 @@ function Projects(){
 
         return(
            // <Link className="link" to={url} target="_blank">
-               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} about={info.description} language={info.language} avatar={info.avatar} />
+               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} about={info.description} language={info.language} avatar={info.avatar} languageColor={info.languageColor}/>
             //</Link>
         );
        
@@ -91,7 +91,7 @@ function Projects(){
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
             </div>
             <div className='row'>
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}

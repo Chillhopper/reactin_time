@@ -9,12 +9,12 @@ function Kard(props){
     //     title:"TITLE",
     //     about:"About Project"
     // }
-    //console.log(props.kardurl);
+    console.log(props);
 
     return(
         <>  
                 <div className="col-lg-3">
-                    <div className="card p-3 mb-2 card-theme">
+                    <div className="card p-3 mb-2">
                         <Link className="link" to={props.kardurl} target="_blank">
                             <div className="d-flex justify-content-between">
                                 <div className="d-flex flex-row align-items-center">
@@ -31,7 +31,7 @@ function Kard(props){
                                 <h3 className="heading text-theme">{props.title}<br />{props.about}</h3>
                                 <div className="mt-5">
                                     <div className='d-flex align-items-center'>
-                                        <div className="circle"></div>
+                                        <div className="circle" style={{backgroundColor: props.languageColor}}></div>
                                         <div className='text-theme' style={{marginLeft: '10px'}}>{props.language}</div>
                                     </div>
                                     <div className="mt-3"> <span className="text1">32 Applied <span className="text2">of 50 capacity</span></span> </div>
