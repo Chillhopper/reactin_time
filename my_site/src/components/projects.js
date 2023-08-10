@@ -19,28 +19,49 @@ async function getter(url){
     }
 }
 
+function extractUsernameAndRepo(url) {
+    const regex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
+    const matches = url.match(regex);
+
+    if (matches && matches.length === 3) {
+      const username = matches[1];
+      const repoName = matches[2];
+      return { username, repoName };
+    } else {
+      console.error("Invalid GitHub repository URL");
+      return null;
+    }
+  }
+  
+
 function Projects(){
     function projButtons(url){
+        const { username, repoName } = extractUsernameAndRepo(url);
+        let request = `https://api.github.com/repos/${username}/${repoName}`;
+        console.log(request);
         const [info, infoState] = useState(
-            {
+            {   
                 name:"loading",
                 days:"loading",
                 title:"loading",
-                about:"loading"
+                about:"loading",
+                language: "loading",
+                avatar: "https://www.gravatar.com/avatar/?d=404&f=y"
             }
         )
         useEffect(()=>{
             async function fetchdata(){
                 try {
-                    const response = await fetch(url);
+                    const response = await fetch(request);
                     let data = await response.json();
-                    //console.log(data);
-                    //infoState({data.name, data.updated_at, data.title, data.about});
+                    console.log(data);
                     infoState({
-                        name: data.name,
+                        name: data.owner.login,
                         days: data.updated_at,
-                        title: data.title,
-                        about: data.about
+                        title: data.name,
+                        about: data.about,
+                        language: data.language,
+                        avatar: data.owner.avatar_url
                       });
                 } catch (error) {
                     console.error("Sorry, an error occurred:", error);
@@ -55,25 +76,30 @@ function Projects(){
         //const profile=getter(data.owner.avatar_url);
 
         return(
-            <Link className="link" to={url} target="_blank">
-               {/* Kard(pfp, author, days, title, about) */}
-               <Kard author={info.name} days={info.updated_at} title={info.name} about={info.description} />
-            </Link>
+           // <Link className="link" to={url} target="_blank">
+               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} about={info.description} language={info.language} avatar={info.avatar} />
+            //</Link>
         );
        
     }
     return(
         <>
         <h1>My Projects</h1>
-        <div className="projhead">
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
-            {projButtons("https://api.github.com/repos/Chillhopper/header_project")}
+        <div className="container mt-5 mb-3">
+
+            <div className='row'>
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             </div>
+            <div className='row'>
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            </div>
+
+        </div>
         </>
 
     );
