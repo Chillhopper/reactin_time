@@ -23,7 +23,7 @@ function Kard(props){
                                     </div>
                                     <div className="ms-2 c-details">
                                         <h6 className="mb-0 text-theme">{props.author}</h6> 
-                                        <span>1 day ago</span>
+                                        <span className='text-theme'>updated: {props.days} day ago</span>
                                     </div>
                                 </div>
                                 <div className="badge"> <span>Design</span> </div>

@@ -3,7 +3,7 @@ import './projects.css'
 import { Link } from 'react-router-dom';
 import './card.js'
 import Kard from './card.js';
-
+import moment from "moment"
 
 const languageColorsJSON = require('../src_assets/languageColors.json');
 
@@ -17,6 +17,14 @@ async function getter(url){
     } catch (error) {
         console.error("Sorry, an error occurred:", error);
     }
+}
+
+function daysAgo(rawDate){
+    const moment = require("moment");
+    const then = moment(rawDate);
+    const now = moment();
+    const daysAgo = now.diff(then, "days");
+    return daysAgo;
 }
 
 function extractUsernameAndRepo(url) {
@@ -57,7 +65,7 @@ function Projects(){
                     console.log(data.description);
                     infoState({
                         name: data.owner.login,
-                        updated_at: data.updated_at,
+                        updated_at: daysAgo(data.updated_at),
                         title: data.name,
                         description: data.description,
                         language: data.language,
@@ -92,12 +100,11 @@ function Projects(){
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
 
             
             </div>
             <div className='row'>
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
 
