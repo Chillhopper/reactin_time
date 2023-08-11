@@ -41,9 +41,9 @@ function Projects(){
         const [info, infoState] = useState(
             {   
                 name:"loading",
-                days:"loading",
+                updated_at:"loading",
                 title:"loading",
-                about:"loading",
+                description:"loading",
                 language: "loading",
                 avatar: "https://www.gravatar.com/avatar/?d=404&f=y",
                 languageColor: "grey"
@@ -54,11 +54,12 @@ function Projects(){
                 try {
                     const response = await fetch(request);
                     let data = await response.json();
+                    console.log(data.description);
                     infoState({
                         name: data.owner.login,
-                        days: data.updated_at,
+                        updated_at: data.updated_at,
                         title: data.name,
-                        about: data.about,
+                        description: data.description,
                         language: data.language,
                         avatar: data.owner.avatar_url,
                         languageColor: languageColorsJSON[data.language]
@@ -77,7 +78,7 @@ function Projects(){
 
         return(
            // <Link className="link" to={url} target="_blank">
-               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} about={info.description} language={info.language} avatar={info.avatar} languageColor={info.languageColor}/>
+               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} description={info.description} language={info.language} avatar={info.avatar} languageColor={info.languageColor}/>
             //</Link>
         );
        
@@ -89,14 +90,17 @@ function Projects(){
 
             <div className='row'>
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+
+            
             </div>
             <div className='row'>
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+
             </div>
 
         </div>
