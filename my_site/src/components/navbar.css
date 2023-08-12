@@ -1,4 +1,10 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 .navList{
     color: darkgray;
     font-family: "Consolas", monospace;
+}
+
+.navtabsCSS{
+    border-bottom: none;
 }

@@ -3,7 +3,6 @@ import './projects.css'
 import { Link } from 'react-router-dom';
 import './card.js'
 import Kard from './card.js';
-import moment from "moment"
 
 const languageColorsJSON = require('../src_assets/languageColors.json');
 
@@ -41,6 +40,9 @@ function extractUsernameAndRepo(url) {
     }
   }
   
+function isLanguage(object){
+    return (typeof(object)=="string")?object:"unknown";
+}
 
 function Projects(){
     function projButtons(url){
@@ -53,7 +55,7 @@ function Projects(){
                 title:"loading",
                 description:"loading",
                 language: "loading",
-                avatar: "https://www.gravatar.com/avatar/?d=404&f=y",
+                avatar: "https://github.com/github.png?size=460",
                 languageColor: "grey"
             }
         )
@@ -62,13 +64,12 @@ function Projects(){
                 try {
                     const response = await fetch(request);
                     let data = await response.json();
-                    console.log(data.description);
                     infoState({
                         name: data.owner.login,
                         updated_at: daysAgo(data.updated_at),
                         title: data.name,
                         description: data.description,
-                        language: data.language,
+                        language: isLanguage(data.language),
                         avatar: data.owner.avatar_url,
                         languageColor: languageColorsJSON[data.language]
                       });
@@ -97,16 +98,16 @@ function Projects(){
         <div className="container mt-5 mb-3">
 
             <div className='row'>
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/reactin_time")}
+            {projButtons("https://github.com/TheAlgorithms/Java")} 
+            {projButtons("https://github.com/thiruma2011/StackAnnotationMaven")} 
 
             
             </div>
             <div className='row'>
             {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")} 
 
             </div>
 

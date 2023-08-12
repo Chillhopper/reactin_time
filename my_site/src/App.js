@@ -9,11 +9,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">wassup
+    <div className="App">
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

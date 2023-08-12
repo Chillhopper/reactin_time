@@ -9,7 +9,7 @@ function Kard(props){
     //     title:"TITLE",
     //     about:"About Project"
     // }
-    console.log(props);
+    //console.log(props);
 
     return(
         <>  
