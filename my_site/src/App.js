@@ -6,19 +6,25 @@ import Projects from './components/projects.js'
 import Contact from './components/contact'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './theme.js'
+
 
 function App() {
+
+
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
-    </div>
+    <LGtheme.Provider value={{theme, toggleTheme}}>
+     <div className="App">
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Router>
+      </div>
+    </LGtheme.Provider >
   );
 }
 

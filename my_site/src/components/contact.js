@@ -38,7 +38,7 @@ function Contact(){
                 <div className="form-group">
                     <label className="control-label col-sm-2" for="comment">Comment:</label>
                     <div className="col-sm-10">
-                        <textarea className="form-control" rows="5" id="comment"></textarea>
+                        <textarea className="form-control" rows="3" id="comment"></textarea>
                     </div>
                 </div>
                 <div className="form-group">

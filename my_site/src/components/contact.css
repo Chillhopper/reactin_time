@@ -3,6 +3,9 @@
 body{
     background-color: white;
     }
+textarea{
+    resize: none;
+}
     .contact{
     padding: 4%;
     height: 400px;
