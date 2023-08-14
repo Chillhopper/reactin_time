@@ -29,6 +29,10 @@
 
 }
 
+.container{
+    border: 1px solid black;
+}
+
 .link{
     text-decoration: none;
 }
@@ -37,13 +41,5 @@
 
     font-size: 24px;
     font-weight: bold;
-}
-
-.aboutproj{
-
-}
-
-.details{
-
 }
 

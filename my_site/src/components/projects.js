@@ -6,18 +6,6 @@ import Kard from './card.js';
 
 const languageColorsJSON = require('../src_assets/languageColors.json');
 
-const KEY = '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'
-
-async function getter(url){
-    try {
-        const response = await fetch(url);
-        let res =  await response.json();
-        console.log(res);
-    } catch (error) {
-        console.error("Sorry, an error occurred:", error);
-    }
-}
-
 function daysAgo(rawDate){
     const moment = require("moment");
     const then = moment(rawDate);
@@ -80,35 +68,23 @@ function Projects(){
             fetchdata();
 
         }, []);
-
-
-
-        //const profile=getter(data.owner.avatar_url);
-
         return(
-           // <Link className="link" to={url} target="_blank">
                <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} description={info.description} language={info.language} avatar={info.avatar} languageColor={info.languageColor}/>
-            //</Link>
         );
        
     }
     return(
         <>
-        <h1>My Projects</h1>
-        <div className="container mt-5 mb-3">
 
+        <div className="container mt-5 mb-3">
+            
             <div className='row'>
             {projButtons("https://github.com/Chillhopper/reactin_time")}
             {projButtons("https://github.com/TheAlgorithms/Java")} 
             {projButtons("https://github.com/thiruma2011/StackAnnotationMaven")} 
-
-            
-            </div>
-            <div className='row'>
             {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
             {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")} 
-
             </div>
 
         </div>
