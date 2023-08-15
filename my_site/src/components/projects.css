@@ -1,37 +1,5 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-.projhead{
-    display: grid;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    width: 80vw;
-    background-color: none;
-    height: 80vh;
-    overflow: auto;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid black;
-    margin: auto;
-    gap: 0.5rem;
-    padding: 1rem;
-}
-
-.proj{
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: #ffffff;
-    border:transparent;
-    border-radius: 4px;
-    box-shadow: 0px 0px 11px 3px rgb(41, 44, 40);
-    min-height: 20vh;
-    min-width: 10vw;
-
-}
-
-.container{
-    border: 1px solid black;
-}
 
 .link{
     text-decoration: none;
@@ -43,3 +11,12 @@
     font-weight: bold;
 }
 
+.dark{
+    background-color: pink;
+    text-color: white;
+}
+
+.light{
+    background-color: white;
+    text-color: black;
+}

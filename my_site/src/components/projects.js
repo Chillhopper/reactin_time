@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './projects.css'
 import { Link } from 'react-router-dom';
 import './card.js'
 import Kard from './card.js';
+import { LGtheme } from './theme';
+
 
 const languageColorsJSON = require('../src_assets/languageColors.json');
+
+
 
 function daysAgo(rawDate){
     const moment = require("moment");
@@ -33,6 +37,8 @@ function isLanguage(object){
 }
 
 function Projects(){
+
+    const contextObj = useContext(LGtheme);
     function projButtons(url){
         const { username, repoName } = extractUsernameAndRepo(url);
         let request = `https://api.github.com/repos/${username}/${repoName}`;
@@ -73,21 +79,26 @@ function Projects(){
         );
        
     }
+
     return(
         <>
+            <div className={`bg-${contextObj.theme}`} style={{minHeight: '100vh'}}>
 
-        <div className="container mt-5 mb-3">
+                <div className="container pt-5 pb-3">
+                    
+                    <div className='row'>
+                    {projButtons("https://github.com/Chillhopper/reactin_time")}
+                    {projButtons("https://github.com/TheAlgorithms/Java")} 
+                    {projButtons("https://github.com/thiruma2011/StackAnnotationMaven")} 
+                    {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
+                    {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
+                    {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")} 
+                    </div>
+
+                </div>
             
-            <div className='row'>
-            {projButtons("https://github.com/Chillhopper/reactin_time")}
-            {projButtons("https://github.com/TheAlgorithms/Java")} 
-            {projButtons("https://github.com/thiruma2011/StackAnnotationMaven")} 
-            {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-            {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")} 
             </div>
-
-        </div>
+        
         </>
 
     );

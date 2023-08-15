@@ -6,11 +6,16 @@ import Projects from './components/projects.js'
 import Contact from './components/contact'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './theme.js'
+import {LGtheme} from './components/theme.js'
+import { useState } from 'react';
 
 
 function App() {
-
+   const [theme, setTheme] = useState("dark");
+   const toggleTheme = () => {
+   setTheme((theme == "light")?"dark":"light");
+   console.log(`theme changed: ${theme}`);
+ }
 
   return (
     <LGtheme.Provider value={{theme, toggleTheme}}>
