@@ -36,73 +36,77 @@ function isLanguage(object){
     return (typeof(object)=="string")?object:"unknown";
 }
 
-function Projects(){
-
+//Projects is like the main of this file
+function Projects() {
     const contextObj = useContext(LGtheme);
-    function projButtons(url){
-        const { username, repoName } = extractUsernameAndRepo(url);
-        let request = `https://api.github.com/repos/${username}/${repoName}`;
-        const [info, infoState] = useState(
-            {   
-                name:"loading",
-                updated_at:"loading",
-                title:"loading",
-                description:"loading",
-                language: "loading",
-                avatar: "https://github.com/github.png?size=460",
-                languageColor: "grey"
-            }
-        )
-        useEffect(()=>{
-            async function fetchdata(){
-                try {
-                    const response = await fetch(request);
-                    let data = await response.json();
-                    infoState({
-                        name: data.owner.login,
-                        updated_at: daysAgo(data.updated_at),
-                        title: data.name,
-                        description: data.description,
-                        language: isLanguage(data.language),
-                        avatar: data.owner.avatar_url,
-                        languageColor: languageColorsJSON[data.language]
-                      });
-                } catch (error) {
-                    console.error("Sorry, an error occurred:", error);
-                }
-            }
-            fetchdata();
-
-        }, []);
-        return(
-               <Kard kardurl={url} author={info.name} days={info.updated_at} title={info.title} description={info.description} language={info.language} avatar={info.avatar} languageColor={info.languageColor}/>
-        );
-       
-    }
-
-    return(
-        <>
-            <div className={`bg-${contextObj.theme}`} style={{minHeight: '100vh'}}>
-
-                <div className="container pt-5 pb-3">
-                    
-                    <div className='row'>
-                    {projButtons("https://github.com/Chillhopper/reactin_time")}
-                    {projButtons("https://github.com/TheAlgorithms/Java")} 
-                    {projButtons("https://github.com/thiruma2011/StackAnnotationMaven")} 
-                    {projButtons("https://github.com/Chillhopper/LIMO_GUI_Experiment")}
-                    {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")}
-                    {projButtons("https://github.com/Chillhopper/LIMO_NAV_Archive")} 
-                    </div>
-
-                </div>
-            
+  
+    const [projects, setProjects] = useState([]);
+  
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const urlResponse = await fetch('https://api.github.com/users/Chillhopper/repos');
+  
+          if (!urlResponse.ok) {
+            throw new Error(`GitHub API request failed with status ${urlResponse.status}`);
+          }
+  
+          const repoData = await urlResponse.json();
+          const urls = repoData.map((repo) => repo.html_url);
+  
+          // Fetch details for each project asynchronously
+          const projectDetails = await Promise.all(
+            urls.map(async (url) => {
+              const { username, repoName } = extractUsernameAndRepo(url);
+              const request = `https://api.github.com/repos/${username}/${repoName}`;
+              const response = await fetch(request);
+              const data = await response.json();
+  
+              return {
+                name: data.owner.login,
+                updated_at: daysAgo(data.updated_at),
+                title: data.name,
+                description: data.description,
+                language: isLanguage(data.language),
+                avatar: data.owner.avatar_url,
+                languageColor: languageColorsJSON[data.language],
+              };
+            })
+          );
+  
+          setProjects(projectDetails);
+        } catch (error) {
+          console.error("Sorry, an error occurred:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+  
+    return (
+      <>
+        <div className={`bg-${contextObj.theme}`} style={{ minHeight: '100vh' }}>
+          <div className="container pt-5 pb-3">
+            <div className='row'>
+              {projects.map((project, index) => (
+                <Kard
+                  key={index}
+                  kardurl={`https://github.com/${project.name}/${project.title}`}
+                  author={project.name}
+                  days={project.updated_at}
+                  title={project.title}
+                  description={project.description}
+                  language={project.language}
+                  avatar={project.avatar}
+                  languageColor={project.languageColor}
+                />
+              ))}
             </div>
-        
-        </>
-
+          </div>
+        </div>
+      </>
     );
-}
-
+  }
+  
 
 export default Projects
