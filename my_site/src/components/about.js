@@ -3,6 +3,26 @@ import './about.css'
 import { Link } from 'react-router-dom';
 import { LGtheme } from './theme';
 import axios from 'axios';
+import { FaHtml5, FaCss3, FaReact, FaNodeJs, FaPython, FaJava } from 'react-icons/fa';
+import { AiFillCode } from 'react-icons/ai'; // C icon
+import { SiCplusplus } from 'react-icons/si'; // C++ icon
+import { HiCpuChip } from "react-icons/hi2"; //Chip for STM32
+import { FaDocker } from "react-icons/fa"; //docker
+import { FaLinux } from "react-icons/fa";
+
+const techStacks = [
+  { name: 'C', icon: <AiFillCode /> },
+  { name: 'C++', icon: <SiCplusplus /> },
+  { name: 'HTML5', icon: <FaHtml5 /> },
+  { name: 'CSS3', icon: <FaCss3 /> },
+  { name: 'React', icon: <FaReact /> },
+  { name: 'Node.js', icon: <FaNodeJs /> },
+  { name: 'Python', icon: <FaPython /> },
+  { name: 'Java', icon: <FaJava /> },
+  { name: 'STM32', icon: <HiCpuChip/>},
+  { name: 'Docker', icon: <FaDocker/>},
+  { name: 'Linux', icon: <FaLinux/>}
+];
 
 const GitHubProfileInfo = () => {
     const [userData, setUserData] = useState(null);
@@ -70,29 +90,20 @@ function About(){
                 <div className="container-fluid bg-2 text-center">
                 <h3 className="margin">What Am I?</h3>
                 <p> I'm a Robotics Student from Singapore! I like to indulge in all kinds of tech, both low and high level</p>
-                {/* <a href="#" className="btn btn-default btn-lg">
-                    <span className="glyphicon glyphicon-search"></span> Search
-                </a> */}
                 </div>
 
                 {/* Third Container (Grid)  */}
 
-                <div className={`container-fluid bg-3 text-center bg-${contextObj.theme}`}>    
-                <h3 className="margin">Where To Find Me?</h3><br />
-                <div className="row">
-                    <div className="col-sm-4">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <img src="https://github.com/github.png?size=460" className="img-responsive margin" style={{width:"100%"}} alt="Image"></img>
-                    </div>
-                    <div className="col-sm-4"> 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <img src="https://github.com/github.png?size=460" className="img-responsive margin" style={{width:"100%"}} alt="Image"></img>
-                    </div>
-                    <div className="col-sm-4"> 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <img src="https://github.com/github.png?size=460" className="img-responsive margin" style={{width:"100%"}} alt="Image"></img>
-                    </div>
-                </div>
+                <div className={`container-fluid bg-3 text-center `}>
+                  <h3 className="margin">My Tech Stacks</h3><br />
+                  <div className="row">
+                    {techStacks.map((tech, index) => (
+                      <div className="col-sm-4" key={index}>
+                        {tech.icon}
+                        <p>{tech.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* <!-- Footer --> */}
